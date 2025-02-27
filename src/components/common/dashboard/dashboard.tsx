@@ -47,18 +47,17 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <Container
-      maxWidth="xl"
-      sx={{
-        overflow: "auto",
-        display: "flex",
-        flexDirection: "row",
-        mx: "auto",
-        padding: "0 !important",
-        "@media (min-width: 1440px)": {
-          maxWidth: "1440px",
-        },
-      }}
+    <div className="flex overflow-auto !p-0 w-full"
+    // Container
+      // maxWidth=""
+      // sx={{
+      //   overflow: "auto",
+      //   display: "flex",
+      //   flexDirection: "row",
+      //   mx: "auto",
+      //   padding: "0 !important",
+      //   width:"100% !important"
+      // }}
     >
       {/* Sidebar */}
       <Sidebar />
@@ -79,6 +78,6 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
           {children}
         </Box>
       </Box>
-    </Container>
+    </div>
   );
 }
