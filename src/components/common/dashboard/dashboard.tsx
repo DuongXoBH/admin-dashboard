@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Header from "./header/header";
 import Sidebar from "./sidebar/sidebar";
-import { CircularProgress, Container } from "@mui/material";
+import { CircularProgress } from "@mui/material";
 
 export default function Dashboard({ children }: { children: React.ReactNode }) {
   const [user] = useAtom(userToken);
