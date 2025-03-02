@@ -11,6 +11,8 @@ import {
   Typography,
 } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import { useAtom } from "jotai";
+import { sidebarAtom } from "@/state-management";
 interface IProduct {
   id: number;
   title: string;
@@ -20,6 +22,7 @@ interface IProduct {
   favorites: boolean;
 }
 export default function FavoritesList() {
+  const [sidebarOpen,] = useAtom(sidebarAtom);
   const { data: products } = useFetchProductsApi();
   const newProducts = products?.map(
     (product: {
@@ -44,7 +47,8 @@ export default function FavoritesList() {
         width: "100%",
         display: "flex",
         flexWrap: "wrap",
-        justifyContent: "space-between",
+        justifyContent: "start",
+        gap: sidebarOpen ? "5px" : "50px",
       }}
     >
       {Favorites?.map((element: IProduct, index: number) => {

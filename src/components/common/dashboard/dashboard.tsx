@@ -71,7 +71,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
           sx={{
             width: "100%",
             backgroundColor: "#F5F6FA",
-            paddingX: 2,
+            paddingX:2,
             paddingY: 2,
           }}
         >

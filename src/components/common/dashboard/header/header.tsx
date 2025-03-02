@@ -1,16 +1,16 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import {
   Avatar,
   Button,
   IconButton,
+  InputAdornment,
   Menu,
   MenuItem,
+  TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -23,46 +23,14 @@ import { useFetchUserApiBySession } from "@/api-hook/user";
 export default function Header() {
   const [token] = useAtom(userToken);
   const [dashboardOpen, setDashboardOpen] = useAtom(sidebarAtom);
+  const [searchValue, setSearchValue] = React.useState("");
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
+    setSearchValue(e.target.value);
+  }
+  console.log("🚀 ~ Header ~ searchValue:", searchValue)
 
   const { data: user } = useFetchUserApiBySession(token);
-
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.black, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.black, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(2),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "auto",
-    },
-  }));
-
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
-
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "black",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "20ch",
-      },
-    },
-  }));
 
   const settings = ["Profile", "Account", "Dashboard", "Log out"];
 
@@ -102,15 +70,24 @@ export default function Header() {
 
         {/* Search area */}
         <Toolbar sx={{ padding: "0px !important" }}>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon sx={{ color: "gray" }} />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+        <TextField
+            placeholder="Search "
+            variant="outlined"
+            size="small"
+            onChange={handleChange}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon color="disabled" />
+                </InputAdornment>
+              ),
+              sx: {
+                borderRadius: "50px",
+                backgroundColor: "white",
+                
+              },
+            }}
+          />
         </Toolbar>
       </Box>
 

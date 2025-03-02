@@ -38,7 +38,7 @@ export default function ProductList() {
       return {
         ...product,
         totalFavorites : Math.floor(Math.random()*200 + 1),
-        favorites: Math.random() < 0.5,
+        favorites: true,
       }
     })
 

@@ -13,6 +13,9 @@ export default {
         foreground: "var(--foreground)",
         "main-background": "#5186FF",
       },
+      backgroundImage:{
+        "pricing": "url('/pricing/background.png')"
+      },
       container: {
         center: true,
         screens: {

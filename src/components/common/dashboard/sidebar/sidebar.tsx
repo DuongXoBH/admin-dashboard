@@ -29,13 +29,11 @@ export default function Sidebar() {
   return (
     <Drawer
       sx={{
-        width: open ? 240 : 56,
+        width: open ? 240 : 80,
         flexShrink: 0,
-        borderColor: "rgba(213, 213, 213, 1)",
-        borderWidth: "0.6px",
-        borderStyle: "solid",
+        overflow: "hidden",
         "& .MuiDrawer-paper": {
-          width: open ? 240 : 56,
+          width: open ? 240 : 80,
           boxSizing: "border-box",
           position: "relative",
         },
@@ -43,9 +41,17 @@ export default function Sidebar() {
       variant="permanent"
     >
       <Toolbar sx={{ pl: 2, py: 1 }}>
-        {open && (
-          <Image src="/Logo.svg" alt="Logo" width={256} height={256} priority></Image>
-        )}
+        <Link href="/">
+          {open && (
+            <Image
+              src="/Logo.svg"
+              alt="Logo"
+              width={256}
+              height={256}
+              priority
+            ></Image>
+          )}
+        </Link>
       </Toolbar>
       {/* <Divider /> */}
       <List>
@@ -63,7 +69,9 @@ export default function Sidebar() {
             <Tooltip title={open ? "" : `${element.text}`}>
               <Link className="w-[240px]" href={element.href}>
                 <ListItemButton sx={{ overflow: "hidden" }}>
-                  <ListItemIcon>
+                  <ListItemIcon
+                    sx={{ display: "flex", justifyContent: "center" }}
+                  >
                     {React.createElement(element.icon, {
                       sx: {
                         color: pathName === element.href ? "white" : "black",
@@ -102,8 +110,10 @@ export default function Sidebar() {
             <Tooltip title={open ? "" : `${element.text}`}>
               <Link className="w-[240px]" href={element.href}>
                 <ListItemButton>
-                  <ListItemIcon>
-                    {React.createElement(element.icon,{
+                  <ListItemIcon
+                    sx={{ display: "flex", justifyContent: "center" }}
+                  >
+                    {React.createElement(element.icon, {
                       sx: {
                         color: pathName === element.href ? "white" : "black",
                       },
@@ -119,24 +129,24 @@ export default function Sidebar() {
       <Divider />
       <List>
         <ListItem disablePadding>
-          <Tooltip title={open?"":"Settings"}>
+          <Tooltip title={open ? "" : "Settings"}>
             <ListItemButton>
-              <ListItemIcon>
-                <SettingsIcon sx={{ color:"black" }} />
+              <ListItemIcon sx={{ display: "flex", justifyContent: "center" }}>
+                <SettingsIcon sx={{ color: "black" }} />
               </ListItemIcon>
               {open && <ListItemText primary="Settings" />}
             </ListItemButton>
           </Tooltip>
         </ListItem>
         <ListItem disablePadding>
-          <Tooltip title={open?"":"Logout"}>
+          <Tooltip title={open ? "" : "Logout"}>
             <ListItemButton
               onClick={() => {
                 setUser("");
               }}
             >
-              <ListItemIcon>
-                <PowerSettingsNewIcon sx={{ color:"black" }} />
+              <ListItemIcon sx={{ display: "flex", justifyContent: "center" }}>
+                <PowerSettingsNewIcon sx={{ color: "black" }} />
               </ListItemIcon>
               {open && <ListItemText primary="Logout" />}
             </ListItemButton>

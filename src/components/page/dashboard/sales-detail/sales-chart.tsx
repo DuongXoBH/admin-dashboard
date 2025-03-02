@@ -1,17 +1,25 @@
-"use client"
+"use client";
 
 import React from "react";
 import ReactECharts from "echarts-for-react";
 
-const data = [
-  20, 40, 50, 80, 30, 60, 20, 50, 70, 60, 40, 50,
-];
+export default function SalesChart() {
+  const data = [20, 40, 50, 80, 30, 60, 20, 50, 70, 60, 40, 50];
 
-const labels = [
-  "5k", "10k", "15k", "20k", "25k", "30k", "35k", "40k", "45k", "50k", "55k", "60k",
-];
-
-const ZoomLineChart = () => {
+  const labels = [
+    "5k",
+    "10k",
+    "15k",
+    "20k",
+    "25k",
+    "30k",
+    "35k",
+    "40k",
+    "45k",
+    "50k",
+    "55k",
+    "60k",
+  ];
   const option = {
     tooltip: {
       trigger: "axis",
@@ -69,10 +77,8 @@ const ZoomLineChart = () => {
   };
 
   return (
-    <div className="w-full h-96">
+    <div className="w-full h-[380px]">
       <ReactECharts option={option} style={{ height: "100%", width: "100%" }} />
     </div>
   );
-};
-
-export default ZoomLineChart;
+}
